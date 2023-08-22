@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="pokemon_game">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/images.zip!/" />
+      <root url="jar://$PROJECT_DIR$/audio.zip!/" />
+      <root url="jar://$PROJECT_DIR$/data.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
