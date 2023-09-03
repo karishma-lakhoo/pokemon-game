@@ -392,8 +392,7 @@ function animate() {
     }
 
 }
-animate()
-// animateBattle()
+
 const battleBackgroundImage = new Image()
 battleBackgroundImage.src = 'images/battleMap.png'
 const battleBackground = new Sprite({
@@ -536,7 +535,8 @@ window.addEventListener('keyup', (e) => {
 
 
 
-
+// animate()
+animateBattle()
 
 let clicked = false
 addEventListener('click', () => {
