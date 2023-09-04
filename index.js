@@ -545,3 +545,8 @@ addEventListener('click', () => {
         clicked = true
     }
 })
+
+
+//notes: make it so that when you make your way to the picnic
+// the girl there will ask you to get something for her from the shops
+//then once you get it, you will receive a prize or an animation will happen
