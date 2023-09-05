@@ -435,12 +435,18 @@ const embySprite = new BattleSprite({
 })
 
 let battleAnimationId
+
+const renderedSprites = [draggleSprite, embySprite]
 function animateBattle() {
     battleAnimationId = window.requestAnimationFrame(animateBattle)
     // console.log('animating battle')
     battleBackground.draw()
     draggleSprite.draw()
     embySprite.draw()
+
+    renderedSprites.forEach((sprite) => {
+        sprite.draw()
+    })
     // document.querySelectorAll('button').forEach({button} => {
     //     button.addEventListener('click', (e) => {
     //         gsap.to('#overlappingDiv', {
@@ -539,15 +545,14 @@ window.addEventListener('keyup', (e) => {
 // animate()
 animateBattle()
 
+// event listeners for buttons
 document.querySelectorAll('button').forEach(button =>{
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        const selectedAttack = attacks[e.currentTarget.innerHTML]
         embySprite.attack({
-            attack: {
-                name: "Tackle",
-                damage: 10,
-                type: 'Normal'
-            },
-            recipient: draggleSprite})
+            attack: selectedAttack,
+            recipient: draggleSprite,
+            renderedSprites})
     })
 })
 
