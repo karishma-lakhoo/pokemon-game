@@ -393,89 +393,7 @@ function animate() {
 
 }
 
-const battleBackgroundImage = new Image()
-battleBackgroundImage.src = 'images/battleMap.png'
-const battleBackground = new Sprite({
-    position: {
-        x: 0,
-        y: 0
-    },
-    image: battleBackgroundImage
-})
 
-const draggleImage = new Image()
-draggleImage.src = 'images/draggleSprite.png'
-
-const draggleSprite = new BattleSprite({
-    position: {
-        x: 660,
-        y: 200
-    }, image: draggleImage,
-    frames: {
-        max: 4,
-        hold: 30
-    },
-    animate: true,
-    isEnemy: true
-})
-
-const embyImage = new Image()
-embyImage.src = 'images/embySprite.png'
-
-const embySprite = new BattleSprite({
-    position: {
-        x: 250,
-        y: 300
-    }, image: embyImage,
-    frames: {
-        max: 4,
-        hold: 30
-    },
-    animate:true
-})
-
-let battleAnimationId
-
-const renderedSprites = [draggleSprite, embySprite]
-function animateBattle() {
-    battleAnimationId = window.requestAnimationFrame(animateBattle)
-    // console.log('animating battle')
-    battleBackground.draw()
-    draggleSprite.draw()
-    embySprite.draw()
-
-    renderedSprites.forEach((sprite) => {
-        sprite.draw()
-    })
-    // document.querySelectorAll('button').forEach({button} => {
-    //     button.addEventListener('click', (e) => {
-    //         gsap.to('#overlappingDiv', {
-    //             opacity: 1
-    //         }
-    if (keys.w.pressed){
-        window.cancelAnimationFrame(battleAnimationId)
-        gsap.to('#overlappingDiv', {
-            opacity: 1,
-            duration: 0.4,
-            onComplete() {
-                gsap.to('#overlappingDiv', {
-                    opacity: 1,
-                    duration: 0.4,
-                    //     activate a new animation loop
-                    onComplete() {
-                        animate()
-                        gsap.to('#overlappingDiv', {
-                            opacity: 0,
-                            duration: 0.4,
-                        })
-                        battle.initiated = false
-                    }
-                })
-            }
-        })
-
-    }
-}
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
@@ -543,19 +461,6 @@ window.addEventListener('keyup', (e) => {
 
 
 // animate()
-animateBattle()
-
-// event listeners for buttons
-document.querySelectorAll('button').forEach(button =>{
-    button.addEventListener('click', (e) => {
-        const selectedAttack = attacks[e.currentTarget.innerHTML]
-        embySprite.attack({
-            attack: selectedAttack,
-            recipient: draggleSprite,
-            renderedSprites})
-    })
-})
-
 let clicked = false
 addEventListener('click', () => {
     if (!clicked){
@@ -563,7 +468,6 @@ addEventListener('click', () => {
         clicked = true
     }
 })
-
 
 //notes: make it so that when you make your way to the picnic
 // the girl there will ask you to get something for her from the shops

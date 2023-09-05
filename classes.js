@@ -44,7 +44,15 @@ class Sprite {
 }
 
 class BattleSprite {
-    constructor({ position, image, frames = { max: 1, hold: 10}, sprites = [], animate = false, isEnemy = false, rotation =0}) {
+    constructor({
+                    position,
+                    image,
+                    frames = { max: 1, hold: 10},
+                    sprites = [],
+                    animate = false,
+                    isEnemy = false,
+                    rotation =0,
+                    name}) {
         this.position = position
         this.image = image
         this.frames = {...frames, val: 0, elapsed: 0 }
@@ -59,6 +67,7 @@ class BattleSprite {
         this.health  = 100
         this.isEnemy = isEnemy
         this.rotation = rotation
+        this.name = name
     }
 
     draw() {
@@ -96,6 +105,9 @@ class BattleSprite {
 
     }
     attack({attack, recipient, renderedSprites}){
+        // unhide dialogue box
+        document.querySelector('#dialogueBox').style.display = "block"
+        document.querySelector('#dialogueBox').innerHTML = this.name  + " used " + attack.name
         let healthBar = '#enemyHealthBar'
         if(this.isEnemy) healthBar = '#playerHealthBar'
         this.health -= attack.damage
