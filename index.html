@@ -56,24 +56,27 @@
     /*background-color: white;*/
     background-color: #ede5f3;
     width: 330px;
-    height: 38px;
+    height: 42px;
     position:absolute;
     top: 23px;
     left: 42px;
     padding: 12px;
 
 ">
+        <!--        draggle health bar-->
         <h1 style="font-size: 16px">Draggle</h1>
         <div style="position:relative;">
             <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
-            <div style="
-            height: 5px;
-            background-color: green;
-            position:absolute;
-            top:0;
-            left:0;
-            width: 50%;
-            right: 0"></div>
+            <div
+                    id="enemyHealthBar"
+                    style="
+                        height: 5px;
+                        background-color: green;
+                        position:absolute;
+                        top:0;
+                        left:0;
+                        width: 100%;
+                        right: 0"></div>
         </div>
     </div>
 
@@ -85,19 +88,37 @@
     top: 350px;
     left: 635px;
 
-"></div>
+    "></div>
 
 
 
-<!--    <div style="-->
-<!--    background-color: #ede5f3;-->
-<!--    width: 370px;-->
-<!--    height: 60px;-->
-<!--    position:absolute;-->
-<!--    top: 350px;-->
-<!--    left: 635px;-->
+    <div style="
+        /*background-color: white;*/
+        background-color: #ede5f3;
+        width: 330px;
+        height: 43px;
+        position:absolute;
+        top: 335px;
+        left: 635px;
+        padding: 12px;
 
-<!--"></div>-->
+    ">
+        <h1 style="font-size: 16px">Emby</h1>
+        <div style="position:relative;">
+            <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
+            <div
+                    id="playerHealthBar"
+                    style="
+                        height: 5px;
+                        background-color: green;
+                        position:absolute;
+                        top:0;
+                        left:0;
+                        width: 100%;
+                        right: 0"></div>
+        </div>
+
+    </div>
 
     <canvas></canvas>
     <div
@@ -116,7 +137,7 @@
         display: grid;
         background-color: #ede5f3;
         grid-template-columns: repeat(2, 1fr)">
-            <button>Attack1</button>
+            <button>Tackle</button>
             <button>Attack2</button>
         </div>
         <div style="

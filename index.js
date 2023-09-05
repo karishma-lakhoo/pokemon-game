@@ -408,14 +408,15 @@ draggleImage.src = 'images/draggleSprite.png'
 
 const draggleSprite = new BattleSprite({
     position: {
-        x: 250,
-        y: 300
+        x: 660,
+        y: 200
     }, image: draggleImage,
     frames: {
         max: 4,
         hold: 30
     },
-    animate: true
+    animate: true,
+    isEnemy: true
 })
 
 const embyImage = new Image()
@@ -423,8 +424,8 @@ embyImage.src = 'images/embySprite.png'
 
 const embySprite = new BattleSprite({
     position: {
-        x: 660,
-        y: 200
+        x: 250,
+        y: 300
     }, image: embyImage,
     frames: {
         max: 4,
@@ -436,7 +437,7 @@ const embySprite = new BattleSprite({
 let battleAnimationId
 function animateBattle() {
     battleAnimationId = window.requestAnimationFrame(animateBattle)
-    console.log('animating battle')
+    // console.log('animating battle')
     battleBackground.draw()
     draggleSprite.draw()
     embySprite.draw()
@@ -537,6 +538,18 @@ window.addEventListener('keyup', (e) => {
 
 // animate()
 animateBattle()
+
+document.querySelectorAll('button').forEach(button =>{
+    button.addEventListener('click', () => {
+        embySprite.attack({
+            attack: {
+                name: "Tackle",
+                damage: 10,
+                type: 'Normal'
+            },
+            recipient: draggleSprite})
+    })
+})
 
 let clicked = false
 addEventListener('click', () => {
