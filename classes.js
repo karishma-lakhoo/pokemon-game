@@ -50,9 +50,8 @@ class BattleSprite {
                     frames = { max: 1, hold: 10},
                     sprites = [],
                     animate = false,
-                    isEnemy = false,
                     rotation =0,
-                    name}) {
+                    }) {
         this.position = position
         this.image = image
         this.frames = {...frames, val: 0, elapsed: 0 }
@@ -64,10 +63,8 @@ class BattleSprite {
         this.animate = animate
         this.sprites = sprites
         this.opacity = 1
-        this.health  = 100
-        this.isEnemy = isEnemy
         this.rotation = rotation
-        this.name = name
+
     }
 
     draw() {
@@ -102,6 +99,38 @@ class BattleSprite {
             }
         }
 
+
+    }
+
+
+
+}
+
+class Monster extends BattleSprite{
+    constructor({
+                    position,
+                    image,
+                    frames = { max: 1, hold: 10},
+                    sprites = [],
+                    animate = false,
+                    rotation =0,
+                    isEnemy = false,
+                    name,
+                    attacks
+
+                }) {
+        super({
+            position,
+            image,
+            frames,
+            sprites,
+            animate,
+            rotation,
+        })
+        this.health  = 100
+        this.isEnemy = isEnemy
+        this.name = name
+        this.attacks = attacks
 
     }
     attack({attack, recipient, renderedSprites}){
@@ -196,7 +225,6 @@ class BattleSprite {
 
 
     }
-
 
 }
 

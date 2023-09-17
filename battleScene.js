@@ -8,41 +8,20 @@ const battleBackground = new Sprite({
     image: battleBackgroundImage
 })
 
-const draggleImage = new Image()
-draggleImage.src = 'images/draggleSprite.png'
 
-const draggleSprite = new BattleSprite({
-    position: {
-        x: 660,
-        y: 200
-    }, image: draggleImage,
-    frames: {
-        max: 4,
-        hold: 30
-    },
-    animate: true,
-    isEnemy: true,
-    name: 'Draggle'
+
+const draggleSprite = new Monster(monsters.draggleSprite)
+
+const embySprite = new Monster(monsters.embySprite)
+embySprite.attacks.forEach((attack) => {
+    const button = document.createElement('button');
+    button.innerHTML = attack.name
+    document.querySelector('#attacksBox').append(button)
+
 })
-
-const embyImage = new Image()
-embyImage.src = 'images/embySprite.png'
-
-const embySprite = new BattleSprite({
-    position: {
-        x: 250,
-        y: 300
-    }, image: embyImage,
-    frames: {
-        max: 4,
-        hold: 30
-    },
-    animate:true,
-    name: "Emby"
-})
+// console.log(embySprite)
 
 let battleAnimationId
-
 const renderedSprites = [draggleSprite, embySprite]
 function animateBattle() {
     battleAnimationId = window.requestAnimationFrame(animateBattle)
@@ -100,12 +79,6 @@ document.querySelectorAll('button').forEach(button =>{
         queue.push(() => {
             draggleSprite.attack({
                 attack: attacks.Tackle,
-                recipient: embySprite,
-                renderedSprites})
-        })
-        queue.push(() => {
-            draggleSprite.attack({
-                attack: attacks.Fireball,
                 recipient: embySprite,
                 renderedSprites})
         })
