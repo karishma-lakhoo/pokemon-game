@@ -76,7 +76,14 @@ document.querySelectorAll('button').forEach(button =>{
             attack: selectedAttack,
             recipient: draggleSprite,
             renderedSprites})
-
+        // draggle or enemy attacks here
+        // draggle can only attack if health > 0
+        if(draggleSprite.health <=0){
+            queue.push(() => {
+                draggleSprite.faint()
+            })
+            return
+        }
         const randomAttack = draggleSprite.attacks[Math.floor(Math.random()* draggleSprite.attacks.length)]
 
         queue.push(() => {
@@ -85,6 +92,11 @@ document.querySelectorAll('button').forEach(button =>{
                 recipient: embySprite,
                 renderedSprites})
         })
+        if(embySprite.health <=0){
+            queue.push(() => {
+                embySprite.faint()
+            })
+        }
     })
 
     button.addEventListener('mouseenter', (e) => {

@@ -134,12 +134,12 @@ class Monster extends BattleSprite{
 
     }
     attack({attack, recipient, renderedSprites}){
-        // unhide dialogue box
+        // show dialogue box
         document.querySelector('#dialogueBox').style.display = "block"
         document.querySelector('#dialogueBox').innerHTML = this.name  + " used " + attack.name
         let healthBar = '#enemyHealthBar'
         if(this.isEnemy) healthBar = '#playerHealthBar'
-        this.health -= attack.damage
+        recipient.health -= attack.damage
         let rotation = 1
         if(this.isEnemy) rotation = -2.2
         switch (attack.name) {
@@ -167,7 +167,7 @@ class Monster extends BattleSprite{
                     onComplete: () => {
                         // where enemy gets hit
                         gsap.to(healthBar, {
-                            width: this.health  + '%'
+                            width: recipient.health  + '%'
                         })
                         gsap.to(recipient.position, {
                             x: recipient.position.x + 10,
@@ -201,7 +201,7 @@ class Monster extends BattleSprite{
                     onComplete: () => {
                         // where enemy gets hit
                         gsap.to(healthBar, {
-                            width: this.health  + '%'
+                            width: recipient.health  + '%'
                         })
                         gsap.to(recipient.position, {
                             x: recipient.position.x + 10,
@@ -224,6 +224,15 @@ class Monster extends BattleSprite{
         }
 
 
+    }
+    faint() {
+        document.querySelector('#dialogueBox').innerHTML = this.name  + " fainted "
+        gsap.to(this.position, {
+            y: this.position.y + 20
+        })
+        gsap.to(this, {
+            opacity: 0
+        })
     }
 
 }
