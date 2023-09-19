@@ -42,7 +42,10 @@
         pointer-events: none;
     "></div>
 
-    <div style="
+    <canvas></canvas>
+
+    <div id="userInterface" style="display: none">
+        <div style="
     background-color: #ede5f3;
     width: 370px;
     height: 50px;
@@ -50,9 +53,10 @@
     top: 40px;
     left: 45px;
 
+
 "></div>
 
-    <div style="
+        <div style="
     /*background-color: white;*/
     background-color: #ede5f3;
     width: 330px;
@@ -63,13 +67,13 @@
     padding: 12px;
 
 ">
-        <!--        draggle health bar-->
-        <h1 style="font-size: 16px">Draggle</h1>
-        <div style="position:relative;">
-            <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
-            <div
-                    id="enemyHealthBar"
-                    style="
+            <!--        draggle health bar-->
+            <h1 style="font-size: 16px">Draggle</h1>
+            <div style="position:relative;">
+                <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
+                <div
+                        id="enemyHealthBar"
+                        style="
                         height: 5px;
                         background-color: green;
                         position:absolute;
@@ -77,10 +81,10 @@
                         left:0;
                         width: 100%;
                         right: 0"></div>
+            </div>
         </div>
-    </div>
 
-    <div style="
+        <div style="
     background-color: #ede5f3;
     width: 370px;
     height: 60px;
@@ -92,7 +96,7 @@
 
 
 
-    <div style="
+        <div style="
         /*background-color: white;*/
         background-color: #ede5f3;
         width: 330px;
@@ -103,12 +107,12 @@
         padding: 12px;
 
     ">
-        <h1 style="font-size: 16px">Emby</h1>
-        <div style="position:relative;">
-            <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
-            <div
-                    id="playerHealthBar"
-                    style="
+            <h1 style="font-size: 16px">Emby</h1>
+            <div style="position:relative;">
+                <div style="height: 5px; background-color: #ccc; margin-top: 10px"></div>
+                <div
+                        id="playerHealthBar"
+                        style="
                         height: 5px;
                         background-color: green;
                         position:absolute;
@@ -116,13 +120,13 @@
                         left:0;
                         width: 100%;
                         right: 0"></div>
+            </div>
+
         </div>
 
-    </div>
 
-    <canvas></canvas>
-    <div
-            style="
+        <div
+                style="
             background-color: antiquewhite;
             height:140px;
             position: absolute;
@@ -132,9 +136,9 @@
             border-top: 5px saddlebrown solid;
             display:flex;
 ">
-        <div
-                id="dialogueBox"
-                style="
+            <div
+                    id="dialogueBox"
+                    style="
                     position:absolute;
                     background-color: white;
                     top:0;
@@ -144,84 +148,84 @@
                     padding: 12px;
                     display: none;
                     cursor: pointer" >asdfasdf</div>
-        <div
-                id="attacksBox"
-                style="
+            <div
+                    id="attacksBox"
+                    style="
                 width: 66.66%;
                 display: grid;
                 background-color: #ede5f3;
                 grid-template-columns: repeat(2, 1fr)">
 
-        </div>
-        <div style="
+            </div>
+            <div style="
         display: flex;
         align-items:center;
         background-color: #ede5f3;
         justify-content: center;
         width:33.33%;
         border-left: 5px saddlebrown solid">
-            <h1 id="attackType" style="font-size: 16px; ">Attack Type</h1>
+                <h1 id="attackType" style="font-size: 16px; ">Attack Type</h1>
+            </div>
         </div>
+
     </div>
-
-
 
     <!--    <div style="background-color: white; width: 200px; height: 200px"></div>-->
-    <div id="mailDiv"
-         style="
-        background-image: url('./images/thingsToDO.png');
-        position: absolute;
-        alignment: center;
-        top: 10%;
-        right: 20%;
-        bottom: 25%;
-        left: 10%;
-        opacity: 0;
-        pointer-events: none;
-    ">
-    </div>
+<!--    <div id="mailDiv"-->
+<!--         style="-->
+<!--        background-image: url('./images/thingsToDO.png');-->
+<!--        position: absolute;-->
+<!--        alignment: center;-->
+<!--        top: 10%;-->
+<!--        right: 20%;-->
+<!--        bottom: 25%;-->
+<!--        left: 10%;-->
+<!--        opacity: 0;-->
+<!--        pointer-events: none;-->
+<!--    ">-->
+<!--    </div>-->
 
-    <div id="seedsDiv"
-         style="
-        background-image: url('./images/seeds.png');
-        position: absolute;
-        alignment: center;
-        top: 10%;
-        right: 20%;
-        bottom: 25%;
-        left: 10%;
-        opacity: 0;
-        pointer-events: none;
-    ">
-    </div>
+<!--    <div id="seedsDiv"-->
+<!--         style="-->
+<!--        background-image: url('./images/seeds.png');-->
+<!--        position: absolute;-->
+<!--        alignment: center;-->
+<!--        top: 10%;-->
+<!--        right: 20%;-->
+<!--        bottom: 25%;-->
+<!--        left: 10%;-->
+<!--        opacity: 0;-->
+<!--        pointer-events: none;-->
+<!--    ">-->
+<!--    </div>-->
 
-    <div id="treasureDiv"
-         style="
-        background-image: url('./images/treasureQR2.png');
-        position: absolute;
-        alignment: center;
-        top: 10%;
-        right: 20%;
-        bottom: 25%;
-        left: 10%;
-        opacity: 0;
-        pointer-events: none;
-    ">
-    </div>
+<!--    <div id="treasureDiv"-->
+<!--         style="-->
+<!--        background-image: url('./images/treasureQR2.png');-->
+<!--        position: absolute;-->
+<!--        alignment: center;-->
+<!--        top: 10%;-->
+<!--        right: 20%;-->
+<!--        bottom: 25%;-->
+<!--        left: 10%;-->
+<!--        opacity: 0;-->
+<!--        pointer-events: none;-->
+<!--    ">-->
+<!--    </div>-->
 
-    <div id="finalDiv"
-         style="
-        background-image: url('./images/finalBG.png');
-        position: absolute;
-        alignment: center;
-        top: 10%;
-        right: 20%;
-        bottom: 25%;
-        left: 10%;
-        opacity: 0;
-        pointer-events: none;
-    ">
-    </div>
+<!--    <div id="finalDiv"-->
+<!--         style="-->
+<!--        background-image: url('./images/finalBG.png');-->
+<!--        position: absolute;-->
+<!--        alignment: center;-->
+<!--        top: 10%;-->
+<!--        right: 20%;-->
+<!--        bottom: 25%;-->
+<!--        left: 10%;-->
+<!--        opacity: 0;-->
+<!--        pointer-events: none;-->
+<!--    ">-->
+<!--    </div>-->
 
 </div>
 <script
@@ -244,4 +248,3 @@
 <script src="classes.js"></script>
 <script src="index.js"></script>
 <script src="battleScene.js"></script>
-

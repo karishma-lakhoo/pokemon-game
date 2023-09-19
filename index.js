@@ -152,7 +152,7 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 }
 
 const battle = {
-    initiated: false
+    initiated: false,
 }
 
 function animate() {
@@ -196,6 +196,7 @@ function animate() {
                             duration: 0.4,
                             //     activate a new animation loop
                             onComplete() {
+                                initBattle();
                                 animateBattle()
                                 gsap.to('#overlappingDiv', {
                                     opacity: 0,

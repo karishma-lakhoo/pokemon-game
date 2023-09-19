@@ -9,20 +9,100 @@ const battleBackground = new Sprite({
 })
 
 
-
-const draggleSprite = new Monster(monsters.draggleSprite)
-
-const embySprite = new Monster(monsters.embySprite)
-embySprite.attacks.forEach((attack) => {
-    const button = document.createElement('button');
-    button.innerHTML = attack.name
-    document.querySelector('#attacksBox').append(button)
-
-})
+let draggleSprite = new Monster(monsters.draggleSprite)
+let embySprite = new Monster(monsters.embySprite)
+let renderedSprites = [draggleSprite, embySprite]
+let queue;
 // console.log(embySprite)
 
 let battleAnimationId
-const renderedSprites = [draggleSprite, embySprite]
+function initBattle(){
+    document.querySelector('#userInterface').style.display = 'block';
+    document.querySelector('#dialogueBox').style.display = 'none';
+    document.querySelector('#enemyHealthBar').style.width = '100%';
+    document.querySelector('#playerHealthBar').style.width = '100%';
+    document.querySelector('#attacksBox').replaceChildren();
+    draggleSprite = new Monster(monsters.draggleSprite);
+    embySprite = new Monster(monsters.embySprite);
+    renderedSprites = [draggleSprite, embySprite];
+    embySprite.attacks.forEach((attack) => {
+        const button = document.createElement('button');
+
+        button.innerHTML = attack.name
+        document.querySelector('#attacksBox').append(button)
+    })
+    queue = [];
+// event listeners for buttons
+    document.querySelectorAll('button').forEach(button =>{
+        button.addEventListener('click', (e) => {
+            const selectedAttack = attacks[e.currentTarget.innerHTML]
+            embySprite.attack({
+                attack: selectedAttack,
+                recipient: draggleSprite,
+                renderedSprites})
+            // draggle or enemy attacks here
+            // draggle can only attack if health > 0
+            if(draggleSprite.health <=0){
+                queue.push(() => {
+                    draggleSprite.faint()
+                })
+                queue.push(() => {
+                    // fade back to black
+                    gsap.to('#overlappingDiv', {
+                        opacity: 1,
+                        onComplete: () => {
+                            cancelAnimationFrame(battleAnimationId);
+                            animate()
+                            document.querySelector('#userInterface').style.display = 'none'
+                            gsap.to('#overlappingDiv', {
+                                opacity: 0
+                            })
+                            battle.initiated = false;
+
+
+                        }
+                    })
+                })
+            }
+            const randomAttack = draggleSprite.attacks[Math.floor(Math.random()* draggleSprite.attacks.length)]
+
+            queue.push(() => {
+                draggleSprite.attack({
+                    attack: randomAttack,
+                    recipient: embySprite,
+                    renderedSprites})
+            })
+            if(embySprite.health <=0){
+                queue.push(() => {
+                    embySprite.faint()
+                })
+                queue.push(() => {
+                    // fade back to black
+                    gsap.to('#overlappingDiv', {
+                        opacity: 1,
+                        onComplete: () => {
+                            cancelAnimationFrame(battleAnimationId);
+                            animate()
+                            document.querySelector('#userInterface').style.display = 'none'
+                            gsap.to('#overlappingDiv', {
+                                opacity: 0
+                            })
+                            battle.initiated = false;
+                        }
+                    })
+                })
+            }
+
+        })
+
+        button.addEventListener('mouseenter', (e) => {
+            const selectedAttack = attacks[e.currentTarget.innerHTML]
+            document.querySelector('#attackType').innerHTML = selectedAttack.type;
+            document.querySelector('#attackType').style.color = selectedAttack.color;
+        })
+    })
+
+}
 function animateBattle() {
     battleAnimationId = window.requestAnimationFrame(animateBattle)
     // console.log('animating battle')
@@ -63,48 +143,11 @@ function animateBattle() {
     }
 }
 
+animate();
+// initBattle();
+// animateBattle()
 
 
-animateBattle()
-
-const queue = [];
-// event listeners for buttons
-document.querySelectorAll('button').forEach(button =>{
-    button.addEventListener('click', (e) => {
-        const selectedAttack = attacks[e.currentTarget.innerHTML]
-        embySprite.attack({
-            attack: selectedAttack,
-            recipient: draggleSprite,
-            renderedSprites})
-        // draggle or enemy attacks here
-        // draggle can only attack if health > 0
-        if(draggleSprite.health <=0){
-            queue.push(() => {
-                draggleSprite.faint()
-            })
-            return
-        }
-        const randomAttack = draggleSprite.attacks[Math.floor(Math.random()* draggleSprite.attacks.length)]
-
-        queue.push(() => {
-            draggleSprite.attack({
-                attack: randomAttack,
-                recipient: embySprite,
-                renderedSprites})
-        })
-        if(embySprite.health <=0){
-            queue.push(() => {
-                embySprite.faint()
-            })
-        }
-    })
-
-    button.addEventListener('mouseenter', (e) => {
-        const selectedAttack = attacks[e.currentTarget.innerHTML]
-        document.querySelector('#attackType').innerHTML = selectedAttack.type;
-        document.querySelector('#attackType').style.color = selectedAttack.color;
-    })
-})
 
 
 document.querySelector('#dialogueBox').addEventListener('click', (e) => {
