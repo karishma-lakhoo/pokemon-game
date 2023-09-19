@@ -318,79 +318,7 @@ function animate() {
                 movable.position.x -= 3})
         }
     }
-    else if (keys.m.pressed){
-        gsap.to('#mailDiv', {
-            opacity: 1,
-            duration: 0.4,
-            onComplete() {
-                gsap.to('#mailDiv', {
-                    opacity: 1,
-                    duration: 8,
-                    onComplete() {
-                        gsap.to('#mailDiv', {
-                            opacity: 0,
-                            duration: 0.4,
-                        })
-                    }
-                })
-            }
-        })
-    }
 
-    else if (keys.n.pressed){
-        gsap.to('#seedsDiv', {
-            opacity: 1,
-            duration: 0.4,
-            onComplete() {
-                gsap.to('#seedsDiv', {
-                    opacity: 1,
-                    duration: 4,
-                    onComplete() {
-                        gsap.to('#seedsDiv', {
-                            opacity: 0,
-                            duration: 0.4,
-                        })
-                    }
-                })
-            }
-        })
-    }
-    else if (keys.t.pressed){
-        gsap.to('#treasureDiv', {
-            opacity: 1,
-            duration: 0.4,
-            onComplete() {
-                gsap.to('#treasureDiv', {
-                    opacity: 1,
-                    duration: 4,
-                    onComplete() {
-                        gsap.to('#treasureDiv', {
-                            opacity: 0,
-                            duration: 0.4,
-                        })
-                    }
-                })
-            }
-        })
-    }
-    else if (keys.y.pressed){
-        gsap.to('#finalDiv', {
-            opacity: 1,
-            duration: 0.4,
-            onComplete() {
-                gsap.to('#finalDiv', {
-                    opacity: 1,
-                    duration: 4,
-                    onComplete() {
-                        gsap.to('#finalDiv', {
-                            opacity: 0,
-                            duration: 0.4,
-                        })
-                    }
-                })
-            }
-        })
-    }
 
 }
 
