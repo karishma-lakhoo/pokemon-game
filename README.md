@@ -33,3 +33,4 @@ In this game, you can initiate battles with enemy creatures by moving your chara
 
 5. The battle will unfold, with both your character and the enemy creature taking turns to attack. The battle continues until one side is defeated.
 
+https://github.com/karishma-lakhoo/pokemon-game/assets/65980113/848c0c73-fde8-4b1c-887f-84e5c34eaca3
